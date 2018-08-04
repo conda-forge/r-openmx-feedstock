@@ -15,7 +15,8 @@ source:
   sha256: c8275de2eb2c8b711b8a58854057dcd11a202ddbc5586704598adfcbb3c18104
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -23,6 +24,15 @@ build:
 
 requirements:
   build:
+    - make
+    - posix                # [win]
+    - {{ compiler('fortran') }}        # [unix]
+    - {{ compiler('m2w64_fortran') }}  # [win]
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('cxx') }}        # [unix]
+    - {{ compiler('m2w64_cxx') }}  # [win]
+  host:
     - r-base
     - r-bh >=1.60
     - r-mass
@@ -32,10 +42,6 @@ requirements:
     - r-stanheaders >=2.10.0.2
     - r-digest
     - r-rpf >=0.45
-    - make
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
 
   run:
     - r-base
@@ -47,7 +53,6 @@ requirements:
     - r-stanheaders >=2.10.0.2
     - r-digest
     - r-rpf >=0.45
-    - libgcc  # [not win]
 
 test:
   commands:
