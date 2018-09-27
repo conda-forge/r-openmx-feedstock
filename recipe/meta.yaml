@@ -1,5 +1,4 @@
-{% set version = '2.9.6' %}
-
+{% set version = '2.11.4' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,13 +9,13 @@ package:
 source:
   fn: OpenMx_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/OpenMx_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
-  sha256: c8275de2eb2c8b711b8a58854057dcd11a202ddbc5586704598adfcbb3c18104
+    - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
+  sha256: e1dd9793db7da6514b5427cbffaaf131775c97fe11a41301e43e002283d731c0
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -24,14 +23,20 @@ build:
 
 requirements:
   build:
-    - make
-    - posix                # [win]
-    - {{ compiler('fortran') }}        # [unix]
-    - {{ compiler('m2w64_fortran') }}  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('cxx') }}        # [unix]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}grep              # [win]
+    - {{posix}}autoconf
+    - {{posix}}automake          # [not win]
+    - {{posix}}automake-wrapper  # [win]
+    - {{posix}}pkg-config
+    - {{posix}}make
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-bh >=1.60
@@ -42,9 +47,9 @@ requirements:
     - r-stanheaders >=2.10.0.2
     - r-digest
     - r-rpf >=0.45
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-bh >=1.60
     - r-mass
     - r-matrix
@@ -56,13 +61,13 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('OpenMx')"  # [not win]
+    - $R -e "library('OpenMx')"           # [not win]
     - "\"%R%\" -e \"library('OpenMx')\""  # [win]
 
 about:
-  home: https://github.com/OpenMx/OpenMx
+  home: http://openmx.ssri.psu.edu, https://github.com/OpenMx/OpenMx
   license: Apache 2.0
-  summary: 'Facilitates treatment of statistical model specifications as things that can be generated
+  summary: Facilitates treatment of statistical model specifications as things that can be generated
     and manipulated programmatically. Structural equation models may be specified with
     reticular action model matrices or paths, linear structural relations matrices or
     paths, or directly in matrix algebra. Fit functions include full information maximum
@@ -70,8 +75,8 @@ about:
     confirmatory factor, multiple group, mixture distribution, categorical threshold,
     modern test theory, differential equations, state space, and many others.  MacOS
     users can download the most up-to-date  package binaries from <http://openmx.ssri.psu.edu>.
-    See Neale, Hunter, Pritikin, Zahery, Brick, Kirkpatrick, Estabrook, Bates, Maes, & Boker
-    (2016) <doi:10.1007/s11336-014-9435-8>.'
+    See Neale, Hunter, Pritikin, Zahery, Brick, Kirkpatrick, Estabrook, Bates, Maes,
+    & Boker (2016) <doi:10.1007/s11336-014-9435-8>.
   license_family: APACHE
 
 extra:
@@ -81,3 +86,4 @@ extra:
     - daler
     - jdblischak
     - cbrueffer
+    - dbast
