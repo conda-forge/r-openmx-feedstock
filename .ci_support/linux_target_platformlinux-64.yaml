@@ -1,13 +1,21 @@
+c_compiler:
+- gcc
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cran_mirror:
 - https://cran.r-project.org
+cxx_compiler:
+- gxx
+docker_image:
+- condaforge/linux-anvil-comp7
+fortran_compiler:
+- gfortran
 pin_run_as_build:
   r-base:
     max_pin: x.x.x
 r_base:
-- 3.4.1
+- 3.5.1
 target_platform:
-- win-64
+- linux-64
