@@ -1,6 +1,4 @@
 {% set version = '2.16.0' %}
-{% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-openmx
@@ -14,29 +12,21 @@ source:
   sha256: 8f769cb1b0e507931767032f7fb19502522ea9ed546a8d9195b5ed470a340fac
 
 build:
-  merge_build_host: True  # [win]
   number: 0
-  skip: true  # [win32]
+  skip: True  # [win]
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('cxx') }}      # [not win]
-    - {{ compiler('fortran') }}  # [not win]
-    - {{native}}toolchain        # [win]
-    - {{posix}}filesystem        # [win]
-    - {{posix}}sed               # [win]
-    - {{posix}}grep              # [win]
-    - {{posix}}autoconf
-    - {{posix}}automake          # [not win]
-    - {{posix}}automake-wrapper  # [win]
-    - {{posix}}pkg-config
-    - {{posix}}make
-    - {{posix}}coreutils         # [win]
-    - {{posix}}zip               # [win]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+    - autoconf
+    - automake
+    - pkg-config
+    - make
   host:
     - r-base
     - r-bh >=1.60
@@ -49,7 +39,6 @@ requirements:
     - r-rpf >=0.45
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
     - r-bh >=1.60
     - r-mass
     - r-matrix
@@ -61,8 +50,7 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('OpenMx')"           # [not win]
-    - "\"%R%\" -e \"library('OpenMx')\""  # [win]
+    - $R -e "library('OpenMx')"
 
 about:
   home: http://openmx.ssri.psu.edu, https://github.com/OpenMx/OpenMx
