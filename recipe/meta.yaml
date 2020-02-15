@@ -12,6 +12,8 @@ source:
     - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
   sha256: 8f769cb1b0e507931767032f7fb19502522ea9ed546a8d9195b5ed470a340fac
+  patches:
+    - 0001-Fix-CXX14-Env-Win.patch
 
 build:
   merge_build_host: True  # [win]

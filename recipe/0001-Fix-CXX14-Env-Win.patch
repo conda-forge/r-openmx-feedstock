@@ -1,0 +1,28 @@
+diff -aur a/MD5 b/MD5
+--- a/MD5	2020-02-03 19:30:02.000000000 -0500
++++ b/MD5	2020-02-16 16:52:55.831309180 -0500
+@@ -992,7 +992,7 @@
+ 781ec0e665d4727ceea37949609cb362 *src/FellnerFitFunction.cpp
+ ad2344ac6f2a6610275b8c8b6f132c53 *src/LoadDataAPI.h
+ efd9bdfdb45b6137e6a9412fd777f6e8 *src/Makevars.in
+-d4bc93fe13020f80f2a660e52ccd17fc *src/Makevars.win
++c23ffa77ca4c9c86b583348cef3a4dd1 *src/Makevars.win
+ 3f01556e92889bbfa474ef5413b43c98 *src/MarkovExpectation.cpp
+ 5173a0b376b951ea81729494293a9e69 *src/MarkovFF.cpp
+ 3ca1aca8f19121e795bceaceec52a016 *src/RAMInternal.h
+diff -aur a/src/Makevars.win b/src/Makevars.win
+--- a/src/Makevars.win	2020-02-03 12:18:59.000000000 -0500
++++ b/src/Makevars.win	2020-02-16 16:38:26.428244586 -0500
+@@ -2,9 +2,9 @@
+ CXX_STD = CXX14
+ 
+ # Developer's Note: As of R 3.5.3 and Rtools35.exe you must set the following flags
+-#  CXX14 = $(BINPREF)g++ $(M_ARCH)
+-#  CXX14STD = -std=gnu++14
+-#  CXX14FLAGS = -Wa,-mbig-obj -g0 -O2
++CXX14 = $(BINPREF)g++ $(M_ARCH)
++CXX14STD = -std=gnu++14
++CXX14FLAGS = -Wa,-mbig-obj -g0 -O2
+ # in R/R-$VERSION/etc/i386/Makeconf and R/R-$VERSION/etc/x64/Makeconf
+ # I'm not sure that the -g0 is even needed, so maybe just 
+ #  CXX14FLAGS = -Wa,-mbig-obj -O2
