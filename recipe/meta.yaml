@@ -1,4 +1,4 @@
-{% set version = '2.11.4' %}
+{% set version = '2.16.0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,7 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
-  sha256: e1dd9793db7da6514b5427cbffaaf131775c97fe11a41301e43e002283d731c0
+  sha256: 8f769cb1b0e507931767032f7fb19502522ea9ed546a8d9195b5ed470a340fac
 
 build:
   merge_build_host: True  # [win]
@@ -26,7 +26,9 @@ requirements:
     - {{ compiler('c') }}        # [not win]
     - {{ compiler('cxx') }}      # [not win]
     - {{ compiler('fortran') }}  # [not win]
-    - {{native}}toolchain        # [win]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('m2w64_fortran') }}  # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}sed               # [win]
     - {{posix}}grep              # [win]
@@ -67,6 +69,7 @@ test:
 about:
   home: http://openmx.ssri.psu.edu, https://github.com/OpenMx/OpenMx
   license: Apache 2.0
+  license_file: LICENSE
   summary: Facilitates treatment of statistical model specifications as things that can be generated
     and manipulated programmatically. Structural equation models may be specified with
     reticular action model matrices or paths, linear structural relations matrices or
@@ -87,3 +90,4 @@ extra:
     - jdblischak
     - cbrueffer
     - dbast
+    - khusmann
