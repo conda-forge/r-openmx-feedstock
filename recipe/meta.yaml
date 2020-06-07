@@ -68,7 +68,7 @@ test:
 
 about:
   home: http://openmx.ssri.psu.edu, https://github.com/OpenMx/OpenMx
-  license: Apache 2.0
+  license: Apache-2.0
   license_file: LICENSE
   summary: Facilitates treatment of statistical model specifications as things that can be generated and manipulated programmatically. Structural equation models may be specified with reticular action model matrices or paths, linear structural relations matrices or paths, or directly in matrix algebra. Fit functions include
     full information maximum likelihood, maximum likelihood, and weighted least squares. Example models include confirmatory factor, multiple group, mixture distribution, categorical threshold, modern test theory, differential equations, state space, and many others.  MacOS users can download the most up-to-date  package
@@ -77,10 +77,5 @@ about:
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+    - conda-forge/r
     - khusmann
