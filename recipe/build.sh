@@ -7,6 +7,12 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   # the OpenMx build to crash. Better unset it here so
   # OpenMx can use its own DEBUG_CXXFLAGS
   unset DEBUG_CXXFLAGS
+
+  # OpenMx should not build fortran code with -fopenmp because
+  # of this issue: https://github.com/OpenMx/OpenMx/issues/284
+  # So take ALL_FFLAGS and ALL_CFFLAGS from Makeconf, remove
+  # -fopenmp and append them to the pkg Makevars as overrides
+  cat $PREFIX/lib/R/etc/Makeconf | awk '/^ALL_FFLAGS/ || /^ALL_FCFLAGS/ {m=$1;$1=$2=""; printf "override %s = $(filter-out -fopenmp, %s)\n",m,$0}' >> src/Makevars.in
   
   $R CMD INSTALL --build .
 else
