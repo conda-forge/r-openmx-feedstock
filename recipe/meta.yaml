@@ -1,4 +1,4 @@
-{% set version = "2.19.1" %}
+{% set version = "2.19.5" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,9 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
-  sha256: 329312b2a9498dfd76eddea07047ac74210827a66bd4b795be3ecfb1786d7639
-  patches:
-     - 0001-fix_member_func_no_obj.patch  # [win]
+  sha256: 5b0f8356cdac77446f5886e857befdb3c461fa41945f084ac9c179302237124d
 
 build:
   merge_build_host: true  # [win]
