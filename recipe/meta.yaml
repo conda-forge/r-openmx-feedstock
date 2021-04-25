@@ -12,8 +12,6 @@ source:
     - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
   sha256: 5b0f8356cdac77446f5886e857befdb3c461fa41945f084ac9c179302237124d
-  patches:
-    - 0001-fix_member_func_no_obj.patch   # [win]
 
 build:
   merge_build_host: true  # [win]
