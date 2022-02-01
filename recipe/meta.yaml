@@ -1,4 +1,4 @@
-{% set version = "2.20.0" %}
+{% set version = "2.20.3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,7 +11,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
-  sha256: 12eab1e3033d1490c054a7ae4f761070c9ad29405baaef9584d8b6ad6da993ba
+  sha256: da0c77a0720349170d52081541d3085f749d408231f2ac2698eb77d6681562cb
 
 build:
   merge_build_host: true  # [win]
