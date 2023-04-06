@@ -1,11 +1,11 @@
-About r-openmx
-==============
+About r-openmx-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-openmx-feedstock/blob/main/LICENSE.txt)
 
 Home: http://openmx.ssri.psu.edu, https://github.com/OpenMx/OpenMx
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-openmx-feedstock/blob/main/LICENSE.txt)
 
 Summary: Facilitates treatment of statistical model specifications as things that can be generated and manipulated programmatically. Structural equation models may be specified with reticular action model matrices or paths, linear structural relations matrices or paths, or directly in matrix algebra. Fit functions include full information maximum likelihood, maximum likelihood, and weighted least squares. Example models include confirmatory factor, multiple group, mixture distribution, categorical threshold, modern test theory, differential equations, state space, and many others.  MacOS users can download the most up-to-date  package binaries from <http://openmx.ssri.psu.edu>. See Neale, Hunter, Pritikin, Zahery, Brick, Kirkpatrick, Estabrook, Bates, Maes, & Boker (2016) <doi:10.1007/s11336-014-9435-8>.
 
