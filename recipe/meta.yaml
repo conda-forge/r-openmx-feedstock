@@ -1,6 +1,5 @@
 {% set version = "2.21.11" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-openmx
@@ -14,8 +13,7 @@ source:
   sha256: 152570b9cdb2d6b91f309b352458ed1b29ae2f7ce1f97c091f84c617a14071cc
 
 build:
-  merge_build_host: true  # [win]
-  number: 0
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -24,9 +22,11 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}        # [not win]
+    - {{ stdlib("c") }}          # [not win]
     - {{ compiler('cxx') }}      # [not win]
     - {{ compiler('fortran') }}  # [not win]
     - {{ compiler('m2w64_c') }}  # [win]
+    - {{ stdlib("m2w64_c") }}    # [win]
     - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ compiler('m2w64_fortran') }}  # [win]
     - {{ posix }}filesystem        # [win]
@@ -35,7 +35,7 @@ requirements:
     - {{ posix }}autoconf
     - {{ posix }}automake          # [not win]
     - {{ posix }}automake-wrapper  # [win]
-    - {{ posix }}pkg-config
+    - pkg-config
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
@@ -51,7 +51,6 @@ requirements:
     - r-rpf >=0.45
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-bh >=1.60
     - r-mass
     - r-matrix
