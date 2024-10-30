@@ -1,4 +1,4 @@
-{% set version = "2.21.11" %}
+{% set version = "2.21.13" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -10,10 +10,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
-  sha256: 152570b9cdb2d6b91f309b352458ed1b29ae2f7ce1f97c091f84c617a14071cc
+  sha256: 32cb352bf96505f5c4360d3f016bf2925648619dfe8429f7b77dbc7fe32d6fbc
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
