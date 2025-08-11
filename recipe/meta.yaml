@@ -6,7 +6,6 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: OpenMx_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/OpenMx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/OpenMx/OpenMx_{{ version }}.tar.gz
@@ -14,10 +13,13 @@ source:
 
 build:
   number: 0
-  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -41,23 +43,27 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
-    - r-bh >=1.60
+    - r-bh >=1.69.0_1
     - r-mass
-    - r-matrix
+    - r-matrix >=1.2_16
     - r-rcpp
-    - r-rcppeigen
+    - r-rcppeigen >=0.3.3.9.4
+    - r-rcppparallel
     - r-stanheaders >=2.10.0.2
     - r-digest
+    - r-lifecycle
     - r-rpf >=0.45
   run:
     - r-base
-    - r-bh >=1.60
+    #- r-bh >=1.69.0_1
     - r-mass
-    - r-matrix
+    - r-matrix >=1.2_16
     - r-rcpp
-    - r-rcppeigen
-    - r-stanheaders >=2.10.0.2
+    - r-rcppeigen >=0.3.3.9.4
+    - r-rcppparallel
+    #- r-stanheaders >=2.10.0.2
     - r-digest
+    - r-lifecycle
     - r-rpf >=0.45
 
 test:
